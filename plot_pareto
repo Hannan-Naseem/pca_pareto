@@ -1,0 +1,18 @@
+def plot_pareto(n_comps,pca_ex):
+
+    df = pd.DataFrame({'Principle Components': pca_ex})
+    df.index = np.arange(n_comps) + 1
+    
+    df = df.sort_values(by='Principle Components',ascending=False)
+    df["cumpercentage"] = df["Principle Components"].cumsum()/df["Principle Components"].sum()*100
+    
+    
+    fig, ax = plt.subplots()
+    ax.bar(df.index, df["Principle Components"], color="C0")
+    ax2 = ax.twinx()
+    ax2.plot(df.index, df["cumpercentage"], color="C1", marker="D", ms=7)
+    ax2.yaxis.set_major_formatter(PercentFormatter())
+    
+    ax.tick_params(axis="y", colors="C0")
+    ax2.tick_params(axis="y", colors="C1")
+    plt.show()
