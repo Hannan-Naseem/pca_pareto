@@ -1,3 +1,8 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib.ticker import PercentFormatter
+import numpy as np
+
 def plot_pareto(n_comps,pca_ex):
 
     df = pd.DataFrame({'Principle Components': pca_ex})
